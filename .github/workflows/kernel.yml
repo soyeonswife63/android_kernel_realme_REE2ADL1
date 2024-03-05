@@ -17,7 +17,7 @@ jobs:
 
     - name: Build kernel
       run: |
-        export ARCH=aarch64
+        export ARCH=arm64
         export CROSS_COMPILE=aarch64-linux-android-
         make -j$(nproc --all) distclean
         make -j$(nproc --all) k69v1_64_k419_defconfig
