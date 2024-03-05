@@ -1,0 +1,30 @@
+name: Kernel Build CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download kernel
+      uses: actions/checkout@v2
+
+    - name: Download toolchain
+      run: |
+        sudo git clone --depth 1 --single-branch --branch android12L-release https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 /opt/toolchains/
+
+    - name: Build kernel
+      run: |
+        export ARCH=aarch64
+        export CROSS_COMPILE=aarch64-linux-android-
+        make -j$(nproc --all) distclean
+        make -j$(nproc --all) k69v1_64_k419_defconfig
+        make -j$(nproc --all)
+
+    - name: Upload output
+      uses: actions/upload-artifact@v2
+      with:
+        name: kernel_build_out
+        path: ${{ github.workspace }}/out/
