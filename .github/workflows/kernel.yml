@@ -17,6 +17,7 @@ jobs:
 
     - name: Build kernel
       run: |
+        export PATH=$PATH:/opt/toolchains/aarch64-linux-android-4.9/bin/
         export ARCH=arm64
         export CROSS_COMPILE=aarch64-linux-android-
         make -j$(nproc --all) distclean
