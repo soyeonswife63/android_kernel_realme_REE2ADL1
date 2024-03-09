@@ -11,6 +11,9 @@ jobs:
     - name: Download kernel
       uses: actions/checkout@v2
 
+    - name: Setup upterm session
+      uses: lhotari/action-upterm@v1
+
     - name: Download toolchain
       run: |
         sudo git clone --depth 1 --single-branch --branch android-msm-redbull-4.19-android13 https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 /opt/toolchains/
