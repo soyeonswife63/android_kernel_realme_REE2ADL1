@@ -19,7 +19,7 @@ jobs:
       run: |
         export PATH=$PATH:/opt/toolchains/aarch64-linux-android-4.9/bin/
         export ARCH=arm64
-        export CROSS_COMPILE=aarch64-linux-android-
+        export CROSS_COMPILE=/opt/toolchains/aarch64-linux-android-4.9/bin/aarch64-linux-android-
         make -j$(nproc --all) distclean
         make -j$(nproc --all) k69v1_64_k419_defconfig
         make -j$(nproc --all)
